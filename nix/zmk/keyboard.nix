@@ -34,7 +34,7 @@
 
   preConfigure = ''
     westBuildFlagsArray+=("-DZMK_CONFIG=$(readlink -f ${lib.escapeShellArg config})")
-    westBuildFlagsArray+=("-DZMK_EXTRA_MODULES=$(readlink -f ./.)")
+    westBuildFlagsArray+=("-DZMK_EXTRA_MODULES=$(readlink -f ./module)")
 
     if [ -d modules/lib/nanopb/generator ]; then
       chmod +x modules/lib/nanopb/generator/{nanopb_generator,protoc,protoc-gen-nanopb}
