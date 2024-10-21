@@ -11,6 +11,7 @@
 , zephyrDepsHash
 , name ? "zmk"
 , config ? "config"
+, module ? "./."
 , extraWestBuildFlags ? []
 , extraCmakeFlags ? []
 , enableZmkStudio ? false
@@ -34,7 +35,7 @@
 
   preConfigure = ''
     westBuildFlagsArray+=("-DZMK_CONFIG=$(readlink -f ${lib.escapeShellArg config})")
-    westBuildFlagsArray+=("-DZMK_EXTRA_MODULES=$(readlink -f ./module)")
+    westBuildFlagsArray+=("-DZMK_EXTRA_MODULES=$(readlink -f ${lib.escapeShellArg module})")
 
     if [ -d modules/lib/nanopb/generator ]; then
       chmod +x modules/lib/nanopb/generator/{nanopb_generator,protoc,protoc-gen-nanopb}
